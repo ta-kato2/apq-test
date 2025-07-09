@@ -1,0 +1,7 @@
+{
+  "110132e3df1cd05f2f54e2504803bb59": "query UserListWithSearchRelayQuery(\n  $name: String\n) {\n  users(name: $name) {\n    id\n    name\n    email\n    age\n  }\n}\n",
+  "93db6a058f7b6b3c90b2a6345f21e215": "query UserListRelayQuery(\n  $name: String\n) {\n  users(name: $name) {\n    id\n    name\n    email\n    age\n  }\n}\n",
+  "9bcfc5b834d817364fae6cddcfdf8cae": "query ProductListWithSearchRelayQuery(\n  $name: String\n) {\n  products(name: $name) {\n    id\n    name\n    price\n    description\n    inStock\n  }\n}\n",
+  "b2f77651f7bbbc214b179794f8d8c71f": "query PersistedQueryDemoRelayQuery {\n  users {\n    id\n    name\n  }\n}\n",
+  "e56c68fe96cc581da50cae8f67bb1fcb": "query CombinedDataWithSearchRelayQuery(\n  $userName: String\n  $productName: String\n) {\n  users(name: $userName) {\n    id\n    name\n    email\n  }\n  products(name: $productName) {\n    id\n    name\n    price\n    inStock\n  }\n}\n"
+}

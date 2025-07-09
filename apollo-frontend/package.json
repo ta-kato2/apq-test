@@ -3,18 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "npm run relay && next dev",
+    "build": "npm run relay && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "relay": "relay-compiler"
   },
   "dependencies": {
-    "@apollo/client": "^3.13.8",
+    "babel-plugin-relay": "^20.0.0",
     "crypto-hash": "^3.1.0",
     "graphql": "^16.11.0",
     "next": "15.3.5",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-relay": "^20.0.0",
+    "relay-compiler": "^20.0.0",
+    "relay-runtime": "^20.0.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
