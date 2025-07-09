@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useQuery } from '@apollo/client';
+import { useQuery } from 'urql';
 import { GET_ALL_PRODUCTS } from '@/lib/queries';
 
 interface Product {
@@ -14,9 +14,12 @@ interface Product {
 
 export function ProductListWithSearch() {
   const [searchName, setSearchName] = useState('');
-  const { loading, error, data } = useQuery<{ products: Product[] }>(GET_ALL_PRODUCTS, {
+  const [result] = useQuery<{ products: Product[] }>({
+    query: GET_ALL_PRODUCTS,
     variables: { name: searchName || undefined },
   });
+
+  const { data, fetching, error } = result;
 
   return (
     <div className="bg-white rounded-lg shadow p-6">
@@ -32,7 +35,7 @@ export function ProductListWithSearch() {
         />
       </div>
 
-      {loading && <div className="text-center p-4">Loading products...</div>}
+      {fetching && <div className="text-center p-4">Loading products...</div>}
       {error && <div className="text-red-500 p-4">Error: {error.message}</div>}
 
       <div className="grid gap-4 md:grid-cols-2">

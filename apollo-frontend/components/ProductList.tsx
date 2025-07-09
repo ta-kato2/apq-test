@@ -1,6 +1,6 @@
 'use client';
 
-import { useQuery } from '@apollo/client';
+import { useQuery } from 'urql';
 import { GET_ALL_PRODUCTS } from '@/lib/queries';
 
 interface Product {
@@ -12,11 +12,14 @@ interface Product {
 }
 
 export function ProductList() {
-  const { loading, error, data } = useQuery<{ products: Product[] }>(GET_ALL_PRODUCTS, {
+  const [result] = useQuery<{ products: Product[] }>({
+    query: GET_ALL_PRODUCTS,
     variables: { name: undefined },
   });
 
-  if (loading) return <div className="text-center p-4">Loading products...</div>;
+  const { data, fetching, error } = result;
+
+  if (fetching) return <div className="text-center p-4">Loading products...</div>;
   if (error) return <div className="text-red-500 p-4">Error: {error.message}</div>;
 
   return (

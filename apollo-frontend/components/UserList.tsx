@@ -1,6 +1,6 @@
 'use client';
 
-import { useQuery } from '@apollo/client';
+import { useQuery } from 'urql';
 import { GET_ALL_USERS } from '@/lib/queries';
 
 interface User {
@@ -11,11 +11,14 @@ interface User {
 }
 
 export function UserList() {
-  const { loading, error, data } = useQuery<{ users: User[] }>(GET_ALL_USERS, {
+  const [result] = useQuery<{ users: User[] }>({
+    query: GET_ALL_USERS,
     variables: { name: undefined },
   });
 
-  if (loading) return <div className="text-center p-4">Loading users...</div>;
+  const { data, fetching, error } = result;
+
+  if (fetching) return <div className="text-center p-4">Loading users...</div>;
   if (error) return <div className="text-red-500 p-4">Error: {error.message}</div>;
 
   return (
