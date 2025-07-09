@@ -20,3 +20,16 @@ homepage:
 
 sandbox:
   enabled: true
+
+# Persisted Queries設定
+persisted_queries:
+  enabled: true
+  # ローカルでのテスト用にauditモードで開始
+  log_unknown: true
+  safelist:
+    enabled: false  # 本番環境ではtrueに変更
+    require_id: false
+
+# APQ (Automatic Persisted Queries)も有効化
+apq:
+  enabled: true
