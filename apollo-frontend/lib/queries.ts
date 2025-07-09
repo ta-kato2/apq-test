@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from 'urql';
 
 export const GET_ALL_USERS = gql`
   query GetAllUsers($name: String) {

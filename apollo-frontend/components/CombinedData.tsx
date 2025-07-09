@@ -1,6 +1,6 @@
 'use client';
 
-import { useQuery } from '@apollo/client';
+import { useQuery } from 'urql';
 import { GET_COMBINED_DATA } from '@/lib/queries';
 
 interface User {
@@ -22,11 +22,14 @@ interface CombinedData {
 }
 
 export function CombinedData() {
-  const { loading, error, data } = useQuery<CombinedData>(GET_COMBINED_DATA, {
+  const [result] = useQuery<CombinedData>({
+    query: GET_COMBINED_DATA,
     variables: { userName: undefined, productName: undefined },
   });
 
-  if (loading) return <div className="text-center p-4">Loading data...</div>;
+  const { data, fetching, error } = result;
+
+  if (fetching) return <div className="text-center p-4">Loading data...</div>;
   if (error) return <div className="text-red-500 p-4">Error: {error.message}</div>;
 
   return (

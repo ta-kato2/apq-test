@@ -35,7 +35,7 @@ export function PersistedQueryDemo() {
 
   return (
     <div className="bg-white rounded-lg shadow p-6">
-      <h2 className="text-2xl font-bold mb-4">Persisted Query Demo</h2>
+      <h2 className="text-2xl font-bold mb-4">Persisted Query Demo (URQL)</h2>
       
       <div className="mb-4">
         <p className="text-gray-600 mb-4">
@@ -57,7 +57,6 @@ export function PersistedQueryDemo() {
           </span>
         )}
       </div>
-
 
       {error && (
         <div className="bg-red-50 border border-red-200 rounded p-4 mb-4">

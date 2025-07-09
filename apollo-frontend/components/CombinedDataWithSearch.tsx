@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useQuery } from '@apollo/client';
+import { useQuery } from 'urql';
 import { GET_COMBINED_DATA } from '@/lib/queries';
 
 interface User {
@@ -26,12 +26,15 @@ export function CombinedDataWithSearch() {
   const [userSearch, setUserSearch] = useState('');
   const [productSearch, setProductSearch] = useState('');
   
-  const { loading, error, data } = useQuery<CombinedData>(GET_COMBINED_DATA, {
+  const [result] = useQuery<CombinedData>({
+    query: GET_COMBINED_DATA,
     variables: {
       userName: userSearch || undefined,
       productName: productSearch || undefined,
     },
   });
+
+  const { data, fetching, error } = result;
 
   return (
     <div className="bg-white rounded-lg shadow p-6">
@@ -54,7 +57,7 @@ export function CombinedDataWithSearch() {
         />
       </div>
 
-      {loading && <div className="text-center p-4">Loading data...</div>}
+      {fetching && <div className="text-center p-4">Loading data...</div>}
       {error && <div className="text-red-500 p-4">Error: {error.message}</div>}
       
       <div className="grid md:grid-cols-2 gap-6">
