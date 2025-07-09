@@ -1,0 +1,22 @@
+supergraph:
+  listen: 0.0.0.0:4000
+  introspection: true
+
+cors:
+  allow_any_origin: true
+  methods:
+    - GET
+    - POST
+    - OPTIONS
+
+headers:
+  all:
+    request:
+      - propagate:
+          named: "authorization"
+
+homepage:
+  enabled: false
+
+sandbox:
+  enabled: true
