@@ -20,3 +20,7 @@ homepage:
 
 sandbox:
   enabled: true
+
+# APQ (Automatic Persisted Queries) configuration
+apq:
+  enabled: true
