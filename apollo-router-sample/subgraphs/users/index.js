@@ -8,7 +8,7 @@ const typeDefs = gql`
     @link(url: "https://specs.apollo.dev/federation/v2.0", import: ["@key", "@shareable"])
 
   type Query {
-    users: [User]
+    users(name: String): [User]
     user(id: ID!): User
   }
 
@@ -28,7 +28,12 @@ const users = [
 
 const resolvers = {
   Query: {
-    users: () => users,
+    users: (_, { name }) => {
+      if (!name) return users;
+      return users.filter(user => 
+        user.name.toLowerCase().includes(name.toLowerCase())
+      );
+    },
     user: (_, { id }) => users.find(user => user.id === id),
   },
   User: {

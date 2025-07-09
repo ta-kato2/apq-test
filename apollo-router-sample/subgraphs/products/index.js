@@ -8,7 +8,7 @@ const typeDefs = gql`
     @link(url: "https://specs.apollo.dev/federation/v2.0", import: ["@key", "@shareable"])
 
   type Query {
-    products: [Product]
+    products(name: String): [Product]
     product(id: ID!): Product
   }
 
@@ -30,7 +30,12 @@ const products = [
 
 const resolvers = {
   Query: {
-    products: () => products,
+    products: (_, { name }) => {
+      if (!name) return products;
+      return products.filter(product => 
+        product.name.toLowerCase().includes(name.toLowerCase())
+      );
+    },
     product: (_, { id }) => products.find(product => product.id === id),
   },
   Product: {
