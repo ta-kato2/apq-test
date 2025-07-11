@@ -1,0 +1,36 @@
+{
+  "format": "apollo-persisted-query-manifest",
+  "version": 1,
+  "operations": [
+    {
+      "id": "f23e15ea3b2ce47a06c0c7b4b01301a66c917238715cd901bd61a3c3a65a1305",
+      "body": "\n  query GetAllUsers($name: String) {\n    users(name: $name) {\n      id\n      name\n      email\n      age\n    }\n  }\n",
+      "name": "GetAllUsers",
+      "type": "query"
+    },
+    {
+      "id": "7615df1a71072d88d074c563bfcf38f714b1c8f291a8642e9d9b0b0f8c699f28",
+      "body": "\n  query GetUser($id: ID!) {\n    user(id: $id) {\n      id\n      name\n      email\n      age\n    }\n  }\n",
+      "name": "GetUser",
+      "type": "query"
+    },
+    {
+      "id": "17f377c3513c70fc4c3e24d6e2a2f3632e7c406433c064d54e9d8723c49dfd63",
+      "body": "\n  query GetAllProducts($name: String) {\n    products(name: $name) {\n      id\n      name\n      price\n      description\n      inStock\n    }\n  }\n",
+      "name": "GetAllProducts",
+      "type": "query"
+    },
+    {
+      "id": "bf402d493124550927d89cd906233608bcb5e58eaf6b3274aad8be37a52e1cf9",
+      "body": "\n  query GetProduct($id: ID!) {\n    product(id: $id) {\n      id\n      name\n      price\n      description\n      inStock\n    }\n  }\n",
+      "name": "GetProduct",
+      "type": "query"
+    },
+    {
+      "id": "92de5c8c8b1e242283a7f404732b84ee48436bb700d779cfc13bcb29aed1b882",
+      "body": "\n  query GetCombinedData($userName: String, $productName: String) {\n    users(name: $userName) {\n      id\n      name\n      email\n    }\n    products(name: $productName) {\n      id\n      name\n      price\n      inStock\n    }\n  }\n",
+      "name": "GetCombinedData",
+      "type": "query"
+    }
+  ]
+}
